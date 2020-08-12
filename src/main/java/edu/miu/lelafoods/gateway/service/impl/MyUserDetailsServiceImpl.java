@@ -29,7 +29,6 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
 
     public User getByUsername(String username){
         return userDao.findByUsername(username);
-//        .orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found"));
     }
 
     public User saveUser(User user){
@@ -52,6 +51,5 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.userDao.findByUsername(username);
-//                .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
     }
 }

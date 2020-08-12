@@ -37,15 +37,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer registerCustomer(Customer customer) throws Exception {
-        if (!(customerDao.findByUsername(customer.getUsername()) != null)) {
+//        if (!(customerDao.findByUsername(customer.getUsername()) != null)) {
             String plainPasssword = customer.getPassword();
             customer.setPassword(this.passwordEncoder.encode(plainPasssword));
 
             Customer savedCustomer = customerDao.save(customer);
             return savedCustomer;
-        } else {
-            throw new Exception("Username " + customer.getUsername() + " is already taken");
-        }
+//        } else {
+//            throw new Exception("Username " + customer.getUsername() + " is already taken");
+//        }
     }
 
     @Override

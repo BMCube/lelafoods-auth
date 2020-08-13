@@ -1,10 +1,10 @@
 package edu.miu.lelafoods.gateway;
 
-import edu.miu.lelafoods.gateway.domain.Address;
-import edu.miu.lelafoods.gateway.domain.Customer;
-import edu.miu.lelafoods.gateway.domain.User;
+import edu.miu.lelafoods.gateway.domain.*;
 import edu.miu.lelafoods.gateway.service.CustomerService;
+import edu.miu.lelafoods.gateway.service.DeliveryManagerService;
 import edu.miu.lelafoods.gateway.service.MyUserDetailsService;
+import edu.miu.lelafoods.gateway.service.RestaurantManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +27,12 @@ public class GatewayApplication implements CommandLineRunner {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    RestaurantManagerService restaurantManagerService;
+
+    @Autowired
+    DeliveryManagerService deliveryManagerService;
+
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }
@@ -42,7 +48,13 @@ public class GatewayApplication implements CommandLineRunner {
         address.setPostalCode("52533");
         address.setCountry("USA");
 
-        Customer customer = new Customer("customer@lelafoods.com","admin","George","","Cannon", new ArrayList<>(Arrays.asList("ROLE_CUSTOMER")),"EN302",address);
+        Customer customer = new Customer("customer@lelafoods.com","admin","George","","Cannon","EN302",address);
         customerService.registerCustomer(customer);
+
+        RestaurantManager restaurantManager = new RestaurantManager("rman@lelafoods.com","admin","Restaurant","","Manager");
+        restaurantManagerService.registerRestaurantManager(restaurantManager);
+
+        DeliveryManager deliveryManager = new DeliveryManager("dman@lelafoods.com","admin","Delivery","","Manager");
+        deliveryManagerService.registerDeliveryManager(deliveryManager);
     }
 }

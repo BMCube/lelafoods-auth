@@ -3,6 +3,8 @@ package edu.miu.lelafoods.gateway.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -17,8 +19,8 @@ public class Customer extends User {
     public Customer() {
     }
 
-    public Customer(@NotEmpty String username, String password, @NotBlank String firstName, String middleName, @NotBlank String lastName, List<String> roles, @NotBlank String customerNumber, Address address) {
-        super(username, password, firstName, middleName, lastName, roles);
+    public Customer(@NotEmpty String username, String password, @NotBlank String firstName, String middleName, @NotBlank String lastName, @NotBlank String customerNumber, Address address) {
+        super(username, password, firstName, middleName, lastName, new ArrayList<>(Arrays.asList("ROLE_CUSTOMER")));
         this.customerNumber = customerNumber;
         this.address = address;
     }
